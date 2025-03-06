@@ -9,7 +9,6 @@ class SpaceStation {
   addCrewMembers(crewMember) {
     this.crewMembers.push(crewMember);
   }
-
   addResources(resource) {
     this.resources.push(resource);
   }
@@ -19,6 +18,7 @@ class SpaceStation {
   addTasks(task) {
     this.tasks.push(task);
   }
+  runTask(task) {}
 }
 
 module.exports = { SpaceStation };
