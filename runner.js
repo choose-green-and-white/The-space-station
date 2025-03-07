@@ -57,8 +57,12 @@ spaceStation.resources.push(resource, fuel, food);
 spaceStation.equipment.push(equipment);
 spaceStation.tasks.push(task, emergencyTask);
 
+spaceStation.runTask(task);
+// console.log("task", task);
+// console.log("spaceStation", spaceStation);
+
 // Генерируем отчет о космической станции
-spaceStation.generateReport();
+// spaceStation.generateReport();
 
 // Имитируем чрезвычайную ситуацию и активируем экстренную задачу
 spaceStation.simulateEmergency();

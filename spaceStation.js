@@ -1,4 +1,6 @@
 const { EmergencyTask } = require("./emergencyTask");
+const { Equipment } = require("./equipment");
+const { Resource } = require("./resource");
 
 class SpaceStation {
   constructor(crewMembers = [], resources = [], equipment = [], tasks = []) {
@@ -21,7 +23,50 @@ class SpaceStation {
     this.tasks.push(task);
   }
   runTask(task) {
-    // Дописать логику
+    let canEndTaskofResources = true;
+    let canEndTaskofEquipment = true;
+    let notEnough = [];
+    const { requiredResources, requiredEquipment } = task;
+    for (const value of requiredResources) {
+      const stantionResource = this.resources.find(
+        (resource) =>
+          resource.name === value.name &&
+          resource.quantity - value.quantity >= 0
+      );
+
+      if (!stantionResource) {
+        canEndTaskofResources = false;
+        notEnough.push(value.name);
+      }
+    }
+
+    if (!canEndTaskofResources) {
+      console.log(`Недостаточно ресурсов: ${notEnough}.`);
+
+      return;
+    } else {
+      notEnough = [];
+    }
+
+    for (const value of requiredEquipment) {
+      const stantionEquipment = this.equipment.find(
+        (equipment) =>
+          equipment.name === value.name && equipment.status === value.status
+      );
+
+      if (!stantionEquipment) {
+        canEndTaskofEquipment = false;
+        notEnough.push(value.name);
+      }
+    }
+
+    if (!canEndTaskofEquipment) {
+      console.log(`Недостаточно снарежения: ${notEnough}.`);
+
+      return;
+    }
+
+    console.log("Задача выпонима!");
   }
   generateReport() {
     console.log(
