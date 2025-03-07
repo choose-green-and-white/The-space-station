@@ -1,1 +1,14 @@
-// твой код здесь
+class EmergencyProtocol {
+  constructor(name, description, priorityLevel, requiredActions = []) {
+    this.name = name;
+    this.description = description;
+    this.priorityLevel = priorityLevel;
+    this.requiredActions = requiredActions;
+  }
+
+  addRequiredAction(action) {
+    this.requiredActions.push(action);
+  }
+}
+
+module.exports = { EmergencyProtocol };
